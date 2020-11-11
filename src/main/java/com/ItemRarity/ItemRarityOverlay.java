@@ -38,18 +38,32 @@ public class ItemRarityOverlay extends WidgetItemOverlay
         showOnBank();
     }
 
-    @Override
-    public void renderItemOverlay(Graphics2D graphics, int itemId, WidgetItem itemWidget)
+    private int itemPrice(int itemId)
     {
         // Used to get High Alch Price
         ItemComposition itemDef = itemManager.getItemComposition(itemId);
 
         // Get GE price and High Alch Price
         int gePrice = itemManager.getItemPrice(itemId);
+
+        // Store Price
+        int storePrice = itemDef.getPrice();
+
+        // High Alch Price
         int haPrice = itemDef.getHaPrice();
 
+        int maxPrice = Integer.max(gePrice, haPrice);
+
+        return Integer.max(maxPrice, storePrice);
+    }
+
+    @Override
+    public void renderItemOverlay(Graphics2D graphics, int itemId, WidgetItem itemWidget)
+    {
+        int price = itemPrice(itemId);
+
         // Get Rarity Color
-        final Color color = plugin.getRarityColor(Integer.max(gePrice, haPrice));
+        final Color color = plugin.getRarityColor(price);
 
         // Null check and alpha optimization
         if (color == null || color.getAlpha() == 0)
