@@ -1,16 +1,21 @@
 package com.ItemRarity;
 
+// External
 import com.google.inject.Provides;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
-import net.runelite.api.ChatMessageType;
-import net.runelite.api.Client;
-import net.runelite.api.GameState;
-import net.runelite.api.events.GameStateChanged;
-import net.runelite.client.config.ConfigManager;
-import net.runelite.client.eventbus.Subscribe;
+
+// RuneLite Plugins
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
+
+// RuneLite
+import net.runelite.client.config.ConfigManager;
+
+// UI
+import net.runelite.client.ui.overlay.OverlayManager;
+
+import java.awt.*;
 
 @Slf4j
 @PluginDescriptor(
@@ -19,35 +24,53 @@ import net.runelite.client.plugins.PluginDescriptor;
 public class ItemRarityPlugin extends Plugin
 {
 	@Inject
-	private Client client;
+	private ItemRarityConfig config;
 
 	@Inject
-	private ItemRarityConfig config;
+	private OverlayManager overlayManager;
+
+	@Inject
+	private ItemRarityOverlay overlay;
 
 	@Override
 	protected void startUp() throws Exception
 	{
 		log.info("ItemRarity started!");
+		overlayManager.add(overlay);
 	}
 
 	@Override
 	protected void shutDown() throws Exception
 	{
 		log.info("ItemRarity stopped!");
-	}
-
-	@Subscribe
-	public void onGameStateChanged(GameStateChanged gameStateChanged)
-	{
-		if (gameStateChanged.getGameState() == GameState.LOGGED_IN)
-		{
-			client.addChatMessage(ChatMessageType.GAMEMESSAGE, "", "ItemRarity says " + config.greeting(), null);
-		}
+		overlayManager.remove(overlay);
 	}
 
 	@Provides
 	ItemRarityConfig provideConfig(ConfigManager configManager)
 	{
 		return configManager.getConfig(ItemRarityConfig.class);
+	}
+
+	Color getRarityColor(final int itemPrice)
+	{
+		if (itemPrice < config.getCommonItemValue())
+		{
+			return config.getCommonItemColor();
+		}
+		else if (itemPrice < config.getUncommonItemValue())
+		{
+			return config.getUncommonItemColor();
+		}
+		else if (itemPrice < config.getRareItemValue())
+		{
+			return config.getRareItemColor();
+		}
+		else if (itemPrice < config.getEpicItemValue())
+		{
+			return config.getEpicItemColor();
+		}
+
+		return config.getLegendaryItemColor();
 	}
 }
