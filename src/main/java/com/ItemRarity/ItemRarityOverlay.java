@@ -43,18 +43,28 @@ public class ItemRarityOverlay extends WidgetItemOverlay
         // Used to get High Alch Price
         ItemComposition itemDef = itemManager.getItemComposition(itemId);
 
+        int maxPrice = 0;
+
         // Get GE price and High Alch Price
         int gePrice = itemManager.getItemPrice(itemId);
-
-        // Store Price
-        int storePrice = itemDef.getPrice();
 
         // High Alch Price
         int haPrice = itemDef.getHaPrice();
 
-        int maxPrice = Integer.max(gePrice, haPrice);
+        if (plugin.getUseGEValue() && plugin.getUseHAValue())
+        {
+            maxPrice = Integer.max(gePrice, haPrice);
+        }
+        else if (plugin.getUseGEValue())
+        {
+            maxPrice = gePrice;
+        }
+        else if (plugin.getUseHAValue())
+        {
+            maxPrice = haPrice;
+        }
 
-        return Integer.max(maxPrice, storePrice);
+        return maxPrice;
     }
 
     @Override

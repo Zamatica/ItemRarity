@@ -10,6 +10,18 @@ import java.awt.*;
 @ConfigGroup("itemRarity")
 public interface ItemRarityConfig extends Config
 {
+	@ConfigItem(keyName = "useGEValue", name = "Use GE Value", description = "Whether to use the GE value price")
+	default boolean getUseGEValue()
+	{
+		return true;
+	}
+
+	@ConfigItem(keyName = "useHAValue", name = "Use HA Value", description = "Whether to use the HA value price")
+	default boolean getUseHAValue()
+	{
+		return true;
+	}
+
 	@ConfigItem(keyName = "a-commonItemValue", name = "Common GE Value", description = "Max Value of a Common Item")
 	default int getCommonItemValue()
 	{

@@ -52,6 +52,16 @@ public class ItemRarityPlugin extends Plugin
 		return configManager.getConfig(ItemRarityConfig.class);
 	}
 
+	boolean getUseGEValue()
+	{
+		return config.getUseGEValue();
+	}
+
+	boolean getUseHAValue()
+	{
+		return config.getUseHAValue();
+	}
+
 	Color getRarityColor(final int itemPrice)
 	{
 		if (itemPrice < config.getCommonItemValue())
