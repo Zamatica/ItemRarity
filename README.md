@@ -1,5 +1,5 @@
 # ItemRarity
-This plugin adds highlighting to show the "Rarity" oof items based on the max between their Store, GE, or HA prices. Currently there are 5 different rarity types: Common, Uncommon, Rare, Epic, and Legendary.
+This plugin adds highlighting to show the "Rarity" of items based on the max between their Store, GE, or HA prices. Currently, there are 5 different rarity types: Common, Uncommon, Rare, Epic, and Legendary.
 
 ![](https://i.imgur.com/JtrQDQk.png)
 
@@ -15,7 +15,7 @@ When multiple prices are selected ItemRarity will use the max price between all 
 With these options selected the rarity is the max between the GE and HA prices of an item.
 
 ### Colors and Prices
-All colors can be changed to fit personal taste. The price an item value must be above to be a rarity can also be changed.
+All colors can be changed to fit personal tastes. The price an item value must be above to be a rarity can also be changed.
 
 ![](https://i.imgur.com/272Wq4R.png)
 
