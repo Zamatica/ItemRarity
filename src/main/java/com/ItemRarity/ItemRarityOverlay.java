@@ -51,17 +51,22 @@ public class ItemRarityOverlay extends WidgetItemOverlay
         // High Alch Price
         int haPrice = itemDef.getHaPrice();
 
-        if (plugin.getUseGEValue() && plugin.getUseHAValue())
+        // Store Price of the item
+        int storePrice = itemDef.getPrice();
+
+        if (plugin.getUseStoreValue())
         {
-            maxPrice = Integer.max(gePrice, haPrice);
+            maxPrice = Integer.max(storePrice, maxPrice);
         }
-        else if (plugin.getUseGEValue())
+
+        if (plugin.getUseGEValue())
         {
-            maxPrice = gePrice;
+            maxPrice = Integer.max(gePrice, maxPrice);
         }
-        else if (plugin.getUseHAValue())
+
+        if (plugin.getUseHAValue())
         {
-            maxPrice = haPrice;
+            maxPrice = Integer.max(haPrice, maxPrice);
         }
 
         return maxPrice;

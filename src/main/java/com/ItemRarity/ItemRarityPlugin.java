@@ -52,6 +52,11 @@ public class ItemRarityPlugin extends Plugin
 		return configManager.getConfig(ItemRarityConfig.class);
 	}
 
+	boolean getUseStoreValue()
+	{
+		return config.getUseStoreValue();
+	}
+
 	boolean getUseGEValue()
 	{
 		return config.getUseGEValue();
