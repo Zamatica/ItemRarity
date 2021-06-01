@@ -77,6 +77,11 @@ public class ItemRarityOverlay extends WidgetItemOverlay
     {
         int price = itemPrice(itemId);
 
+        if (plugin.getUseStackCount())
+        {
+            price *= itemWidget.getQuantity();
+        }
+
         // Get Rarity Color
         final Color color = plugin.getRarityColor(price);
 

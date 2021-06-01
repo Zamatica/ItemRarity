@@ -8,9 +8,9 @@ import java.awt.*;
 public interface ItemRarityConfig extends Config
 {
 	@ConfigItem(
-			keyName = "useStoreValue",
-			name = "Use Store Value",
-			description = "Whether to use the Store value price",
+			keyName = "useStorePrice",
+			name = "Use Store Price",
+			description = "Whether to use the Store price",
 			position = 1
 	)
 	default boolean getUseStoreValue()
@@ -19,9 +19,9 @@ public interface ItemRarityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "useGEValue",
-			name = "Use GE Value",
-			description = "Whether to use the GE value price",
+			keyName = "useGEPrice",
+			name = "Use GE Price",
+			description = "Whether to use the GE price",
 			position = 2
 	)
 	default boolean getUseGEValue()
@@ -30,9 +30,9 @@ public interface ItemRarityConfig extends Config
 	}
 
 	@ConfigItem(
-			keyName = "useHAValue",
-			name = "Use HA Value",
-			description = "Whether to use the HA value price",
+			keyName = "useHAPrice",
+			name = "Use HA Price",
+			description = "Whether to use the HA price",
 			position = 3
 	)
 	default boolean getUseHAValue()
@@ -40,19 +40,30 @@ public interface ItemRarityConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+			keyName = "useStackCount",
+			name = "Use Stack Count",
+			description = "Whether to Calculate the rarity based on the number of items in the stack",
+			position = 4
+	)
+	default boolean getUseStackCount()
+	{
+		return false;
+	}
+
 	// Color Section
 	@ConfigSection(
-			position = 4,
-			name = "Values and Colors",
-			description = "The color and value of each Rarity"
+			position = 5,
+			name = "Common",
+			description = "The color and price of Common Rarity"
 	)
-	String colorSection = "colorSection";
+	String commonSection = "commonSection";
 
 	@ConfigItem(
 			keyName = "commonItemValue",
-			name = "Common GE Value",
-			description = "Max Value of a Common Item",
-			section = colorSection,
+			name = "Price",
+			description = "Max Price of a Common Item",
+			section = commonSection,
 			position = 1
 	)
 	default int getCommonItemValue()
@@ -63,22 +74,32 @@ public interface ItemRarityConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "commonItemColor",
-			name = "Common Item Color",
+			name = "Highlight Color",
 			description = "Color of a Common Item",
-			section = colorSection,
-			position = 1
+			section = commonSection,
+			position = 2
 	)
 	default Color getCommonItemColor()
 	{
 		return new Color(0,0,0,0.0f);
 	}
 
+
+
+	// Color Section
+	@ConfigSection(
+			position = 6,
+			name = "Uncommon",
+			description = "The color and price of Uncommon Rarity"
+	)
+	String uncommonSection = "uncommonSection";
+
 	@ConfigItem(
 			keyName = "uncommonItemValue",
-			name = "Uncommon GE Value",
-			description = "Max Value of a Uncommon Item",
-			section = colorSection,
-			position = 2
+			name = "Price",
+			description = "Max Price of a Uncommon Item",
+			section = uncommonSection,
+			position = 1
 	)
 	default int getUncommonItemValue()
 	{
@@ -88,9 +109,9 @@ public interface ItemRarityConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "uncommonItemColor",
-			name = "Uncommon Item Color",
+			name = "Highlight Color",
 			description = "Color of a Uncommon Item",
-			section = colorSection,
+			section = uncommonSection,
 			position = 2
 	)
 	default Color getUncommonItemColor()
@@ -98,12 +119,21 @@ public interface ItemRarityConfig extends Config
 		return new Color(0, 240 / 255f, 0, 110 / 255f);
 	}
 
+
+	// Color Section
+	@ConfigSection(
+			position = 7,
+			name = "Rare",
+			description = "The color and price of Rare Rarity"
+	)
+	String rareSection = "rareSection";
+
 	@ConfigItem(
 			keyName = "rareItemValue",
-			name = "Rare GE Value",
-			description = "Max Value of a Rare Item",
-			section = colorSection,
-			position = 3
+			name = "Price",
+			description = "Max Price of a Rare Item",
+			section = rareSection,
+			position = 1
 	)
 	default int getRareItemValue()
 	{
@@ -113,22 +143,32 @@ public interface ItemRarityConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "rareItemColor",
-			name = "Rare Item Color",
+			name = "Highlight Color",
 			description = "Color of a Rare Item",
-			section = colorSection,
-			position = 3
+			section = rareSection,
+			position = 2
 	)
 	default Color getRareItemColor()
 	{
 		return new Color(0, 100 / 255f, 240 / 255f, 195 / 255f);
 	}
 
+
+
+	// Color Section
+	@ConfigSection(
+			position = 8,
+			name = "Epic",
+			description = "The color and price of Epic Rarity"
+	)
+	String epicSection = "epicSection";
+
 	@ConfigItem(
 			keyName = "epicItemValue",
-			name = "Epic GE Value",
-			description = "Max Value of a Epic Item",
-			section = colorSection,
-			position = 4
+			name = "Price",
+			description = "Max Price of a Epic Item",
+			section = epicSection,
+			position = 1
 	)
 	default int getEpicItemValue()
 	{
@@ -138,22 +178,32 @@ public interface ItemRarityConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "epicItemColor",
-			name = "Epic Item Color",
+			name = "Highlight Color",
 			description = "Color of a Epic Item",
-			section = colorSection,
-			position = 4
+			section = epicSection,
+			position = 2
 	)
 	default Color getEpicItemColor()
 	{
 		return new Color(160 / 255f, 50 / 255f, 240 / 255f, 195 / 255f);
 	}
 
+
+
+	// Color Section
+	@ConfigSection(
+			position = 9,
+			name = "Legendary",
+			description = "The color and price of Legendary Rarity"
+	)
+	String legendarySection = "legendarySection";
+
 	@ConfigItem(
 			keyName = "legendaryItemValue",
-			name = "Legendary GE Value",
-			description = "Max Value of a Legendary Item",
-			section = colorSection,
-			position = 5
+			name = "Price",
+			description = "Max Price of a Legendary Item",
+			section = legendarySection,
+			position = 1
 	)
 	default int getLegendaryItemValue()
 	{
@@ -163,10 +213,10 @@ public interface ItemRarityConfig extends Config
 	@Alpha
 	@ConfigItem(
 			keyName = "legendaryItemColor",
-			name = "Legendary Item Color",
+			name = "Highlight Color",
 			description = "Color of a Legendary Item",
-			section = colorSection,
-			position = 5
+			section = legendarySection,
+			position = 2
 	)
 	default Color getLegendaryItemColor()
 	{

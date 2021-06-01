@@ -67,6 +67,11 @@ public class ItemRarityPlugin extends Plugin
 		return config.getUseHAValue();
 	}
 
+	boolean getUseStackCount()
+	{
+		return config.getUseStackCount();
+	}
+
 	Color getRarityColor(final int itemPrice)
 	{
 		if (itemPrice < config.getCommonItemValue())
