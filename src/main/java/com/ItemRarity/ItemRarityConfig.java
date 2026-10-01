@@ -66,7 +66,7 @@ public interface ItemRarityConfig extends Config
 			section = commonSection,
 			position = 1
 	)
-	default int getCommonItemValue()
+	default long getCommonItemValue()
 	{
 		return 1000;
 	}
@@ -83,9 +83,7 @@ public interface ItemRarityConfig extends Config
 	{
 		return new Color(0,0,0,0.0f);
 	}
-
-
-
+	
 	// Color Section
 	@ConfigSection(
 			position = 6,
@@ -101,7 +99,7 @@ public interface ItemRarityConfig extends Config
 			section = uncommonSection,
 			position = 1
 	)
-	default int getUncommonItemValue()
+	default long getUncommonItemValue()
 	{
 		return 12500;
 	}
@@ -135,7 +133,7 @@ public interface ItemRarityConfig extends Config
 			section = rareSection,
 			position = 1
 	)
-	default int getRareItemValue()
+	default long getRareItemValue()
 	{
 		return 125000;
 	}
@@ -170,7 +168,7 @@ public interface ItemRarityConfig extends Config
 			section = epicSection,
 			position = 1
 	)
-	default int getEpicItemValue()
+	default long getEpicItemValue()
 	{
 		return 1800000;
 	}
@@ -205,7 +203,7 @@ public interface ItemRarityConfig extends Config
 			section = legendarySection,
 			position = 1
 	)
-	default int getLegendaryItemValue()
+	default long getLegendaryItemValue()
 	{
 		return Integer.MAX_VALUE;
 	}
